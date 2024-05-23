@@ -1,6 +1,10 @@
 const http = require('http');
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const postRoutes = require('./routes/posts');
+const userRoutes = require('./routes/users');
+const commentRoutes = require('./routes/comments');
 
 const app = express();
 // port I am connecting to 
@@ -18,6 +22,8 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 
 
 //Routes to categories
-
+app.use('/api/posts', postRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/comments', commentRoutes);
 
 app.listen(PORT, () => console.log(`Server runing on port ${PORT}`));
