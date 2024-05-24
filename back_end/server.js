@@ -1,4 +1,4 @@
-const http = require('http');
+//const http = require('http');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -23,7 +23,7 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 
 //Routes to categories
 app.use('/api/posts', postRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/comments', commentRoutes);
+//app.use('/api/users', userRoutes);
+//app.use('/api/comments', commentRoutes);
 
 app.listen(PORT, () => console.log(`Server runing on port ${PORT}`));
