@@ -1,10 +1,28 @@
-POST http://localhost:5000/api/comments
-Content-Type: application/json
+# POST http://localhost:5000/api/posts
+# Content-Type: application/json
 
-{
-    "post_id": "66513dc21e4ab0479cdd7e25",
-    "user_id": "66513cd21e4ab0479cdd7e21",
-    "content": "Hey whats up man, whats been happening?"
+# {
     
-}
-# DELETE http://localhost:5000/api/posts/66513ec01e4ab0479cdd7e27
+#     "user_id": "66513cd21e4ab0479cdd7e21",
+#     "content": "ghost of tsushima is a great game"
+    
+# }
+
+# DELETE http://localhost:5000/api/posts/66513dc21e4ab0479cdd7e25
+
+# Update a post by ID
+# PUT http://localhost:5000/api/posts/66517c92b8d96b56abe08b20
+# Content-Type: application/json
+
+# {
+#     "content": "Nevermind, lets get some cookies instead."
+# }
+
+
+# #Read a single post by ID
+# GET http://localhost:5000/api/posts/66517d26b8d96b56abe08b24
+# Content-Type: application/json
+
+# #Read all posts
+# GET http://localhost:5000/api/posts
+# Content-Type: application/json

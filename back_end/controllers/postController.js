@@ -21,7 +21,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPosts = async(req, res) => {
     try{
         const posts = await Post.find().sort({ created_at: -1});
-        res.status(200).json({error: err.message});
+        res.status(200).json({posts});
     }
     catch(err){
         res.status(400).json({error: err.message});
