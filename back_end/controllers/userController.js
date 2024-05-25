@@ -1,4 +1,4 @@
-const User = require('../models/Comment.js');
+const User = require('../models/User.js');
 
 
 exports.createUser = async(req, res) => {
@@ -30,16 +30,16 @@ exports.getUser = async (req, res) => {
 exports.getAllUsers = async(req, res) => {
     try{
         const user = await User.find();
-        res.send(users);
+        res.send(user);
     }
     catch(err){
         res.status(400).send(err);
     }
 };
 
-exports.updateUsers = async(req,res) => {
+exports.updateUser = async(req,res) => {
     try{
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, {new : true})
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {new : true, runValidators: true})
         if (!user){
             return res.status(404).send({ error: 'User not found.'});
         }
