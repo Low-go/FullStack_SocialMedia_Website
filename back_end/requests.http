@@ -1,9 +1,10 @@
-POST http://localhost:5000/api/users
+POST http://localhost:5000/api/comments
 Content-Type: application/json
 
 {
-    "name": "John Doe",
-    "username": "johndoe",
-    "email": "john@example.com",
-    "hashed_password": "hashedpassword123"
+    "post_id": "66513dc21e4ab0479cdd7e25",
+    "user_id": "66513cd21e4ab0479cdd7e21",
+    "content": "Hey whats up man, whats been happening?"
+    
 }
+# DELETE http://localhost:5000/api/posts/66513ec01e4ab0479cdd7e27

@@ -24,6 +24,6 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 //Routes to categories
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
-//app.use('/api/comments', commentRoutes);
+app.use('/api/comments', commentRoutes);
 
 app.listen(PORT, () => console.log(`Server runing on port ${PORT}`));
