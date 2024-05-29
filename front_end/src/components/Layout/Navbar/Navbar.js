@@ -1,20 +1,35 @@
 import { Flex, Image } from '@chakra-ui/react';
-import React from 'react'
+import React from 'react';
 import SearchInput from './SearchInput';
+import RightContent from './RightContent/RightContent';
 
 const Navbar = () => {
   return (
-    <Flex bg="white" height='44px' padding="6px 12px">
+    <Flex bg="white" height='60px' padding="6px 12px" align="center">
       <Flex align="center">
-        <Image src="/images/Postme.jpg" height="30px"/>
-        <Image src='/images/PostMe.png' heigth="46px" display={{base: 'none', md: "unset"}}/>
+        <Image 
+          src="/images/PostMeLogo2.png" 
+          height="40px"   
+          width="auto"    
+          marginRight="12px" 
+        />
+        <Image 
+          src="/images/PostMe.png" 
+          height="36px" 
+          display={{ base: 'none', md: 'unset' }} 
+        />
       </Flex>
-      { <SearchInput />
-      /* <Directory />
-       <RightContent /> */}
+      <Flex
+        flex="1" /* This ensures the SearchInput takes available space */
+        marginLeft={{ base: '20px', lg: '0' }} /* Adds margin-left for medium screens and smaller */
+      >
+        <SearchInput />
+        <RightContent />
+      </Flex>
+      {/* <Directory />
+           */}
     </Flex>
   );
-
 };
 
-export default Navbar
+export default Navbar;
