@@ -11,11 +11,12 @@ const Navbar = () => {
           src="/images/PostMeLogo2.png" 
           height="40px"   
           width="auto"    
-          marginRight="12px" 
+          marginRight="12px"
+          borderRadius={2} 
         />
         <Image 
           src="/images/PostMe.png" 
-          height="36px" 
+          height="33px" 
           display={{ base: 'none', md: 'unset' }} 
         />
       </Flex>

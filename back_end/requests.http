@@ -26,3 +26,5 @@
 # #Read all posts
 # GET http://localhost:5000/api/posts
 # Content-Type: application/json
+
+GET  http://localhost:5000/api/test/testAPI
