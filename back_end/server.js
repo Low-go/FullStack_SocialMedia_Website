@@ -16,10 +16,10 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
 //connect to my database
-// const dbURI = 'mongodb://127.0.0.1:27017/PostMe';
-// mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
-//     .then(() => console.log('MongoDB Connected...'))
-//     .catch(err => console.log(err));
+const dbURI = 'mongodb://mongo:27017/PostMe';
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log('MongoDB Connected...'))
+    .catch(err => console.log(err));
 
 
 //Routes to categories
