@@ -14,4 +14,4 @@ COPY . /usr/src/app/
 
 EXPOSE 5000
 
-CMD ["npm", "start"]
+CMD ["nodemon", "server.js"]
