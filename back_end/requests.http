@@ -3,8 +3,8 @@
 
 # {
     
-#     "user_id": "66513cd21e4ab0479cdd7e21",
-#     "content": "ghost of tsushima is a great game"
+#     "user_id": "6659289507708713c0e3103e",
+#     "content": "catch me outside how about that"
     
 # }
 
@@ -27,4 +27,4 @@
 # GET http://localhost:5000/api/posts
 # Content-Type: application/json
 
-GET  http://localhost:5000/api/test/testAPI
+# GET  http://localhost:5000/api/test/testAPI
