@@ -30,4 +30,4 @@ const PageContent = ({ children }) => {
   );
 };
 
-export default PageContent
+export default PageContent;

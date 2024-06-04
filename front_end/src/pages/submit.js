@@ -1,14 +1,18 @@
 import React from 'react';
 import PageContent from '@/components/Layout/Layout/PageContent';
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
+import NewPostForm from '@/components/Posts/NewPostForm';
 
 function submit() {
   return (
     <PageContent>
         <>
-            <Box></Box>
-            {/** NewPostForm */}
-            <h1>test</h1>
+          <Box p='14px 0px' borderBottom='1px solid' borderColor="white">
+            <Text>Post It!</Text>
+          </Box>
+          <NewPostForm/>
+
+
         
         </>
         <>{/** About */}</>
