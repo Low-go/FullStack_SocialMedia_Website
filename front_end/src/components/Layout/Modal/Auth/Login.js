@@ -2,18 +2,19 @@ import React from 'react';
 import { Flex, Button, Input, Text } from "@chakra-ui/react";
 import { useState } from 'react';
 import { AuthModalState } from '../../../../atoms/authModalAtom.js';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 
 const Login = () => {
 
-  const setAuthModalState = useRecoilState(AuthModalState);  
+  const setAuthModalState = useSetRecoilState(AuthModalState);  
 
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
 
+  //on submit should connect to my mongodb!!
   const onSubmit = () => {};
   const onChange = (event) => {
     //update form state
@@ -31,7 +32,7 @@ const Login = () => {
             placeHolder="email" 
             type="email"
             mb={2}
-            onChange={() => {}}
+            onChange={onChange}
             fontSize='10pt'
             _placeholder={{color: "gray.500"}}
             _hover={{
@@ -53,7 +54,7 @@ const Login = () => {
             placeHolder="password"
             type="password"
             mb={2}
-            onChange={() => {}}
+            onChange={onChange}
             fontSize='10pt'
             _placeholder={{color: "gray.500"}}
             _hover={{

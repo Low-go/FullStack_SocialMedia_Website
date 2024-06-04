@@ -4,27 +4,27 @@
 # {
     
 #     "user_id": "6659289507708713c0e3103e",
-#     "content": "catch me outside how about that"
+#     "content": "How are you today"
     
 # }
 
-# DELETE http://localhost:5000/api/posts/66513dc21e4ab0479cdd7e25
+# DELETE http://localhost:5000/api/posts/665a5ab6b294477b83f213a1
 
 # Update a post by ID
-# PUT http://localhost:5000/api/posts/66517c92b8d96b56abe08b20
+# PUT http://localhost:5000/api/posts/665a5ab6b294477b83f213a1
 # Content-Type: application/json
 
 # {
-#     "content": "Nevermind, lets get some cookies instead."
+#     "content": "Test test test"
 # }
 
 
-# #Read a single post by ID
-# GET http://localhost:5000/api/posts/66517d26b8d96b56abe08b24
+# # #Read a single post by ID
+# GET http://localhost:5000/api/posts/665a5ad2b294477b83f213a3
 # Content-Type: application/json
 
-# #Read all posts
+# # #Read all posts
 # GET http://localhost:5000/api/posts
 # Content-Type: application/json
 
-# GET  http://localhost:5000/api/test/testAPI
+GET  http://localhost:5000/api/test/testAPI
