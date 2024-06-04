@@ -8,6 +8,7 @@ function submit() {
         <>
             <Box></Box>
             {/** NewPostForm */}
+            <h1>test</h1>
         
         </>
         <>{/** About */}</>

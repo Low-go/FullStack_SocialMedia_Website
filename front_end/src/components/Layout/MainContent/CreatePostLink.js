@@ -1,27 +1,20 @@
 import { Flex, Icon, Input } from "@chakra-ui/react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { BsLink45Deg } from "react-icons/bs";
-
 import { IoImageOutline } from "react-icons/io5";
-
-
-
 
 const CreatePostLink = () => {
   const router = useRouter();
-  
   const onClick = () => {
-    // Could check for user to open auth modal before redirecting to submit
     const { community } = router.query;
     if (community) {
-      router.push(`/r/${router.query.community}/submit`);
-      return;
+      router.push(`/r/${community}/submit`);
+    } else {
+      router.push('/submit'); // Redirect to a general submit page if no community is selected
     }
-    // Open directory menu to select community to post to
-    //toggleMenuOpen();
   };
+
   return (
     <Flex
       justify="space-evenly"
@@ -68,4 +61,5 @@ const CreatePostLink = () => {
     </Flex>
   );
 };
+
 export default CreatePostLink;
