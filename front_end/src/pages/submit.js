@@ -1,7 +1,7 @@
 import React from 'react';
 import PageContent from '@/components/Layout/Layout/PageContent';
 import { Box, Text } from '@chakra-ui/react';
-import NewPostForm from '@/components/Posts/NewPostForm';
+import NewPostForm from '@/components/Posts/PostForm/NewPostForm';
 
 function submit() {
   return (
@@ -11,9 +11,6 @@ function submit() {
             <Text>Post It!</Text>
           </Box>
           <NewPostForm/>
-
-
-        
         </>
         <>{/** About */}</>
     </PageContent>
