@@ -1,9 +1,25 @@
 const User = require('../models/User.js');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-
-exports.createUser = async(req, res) => {
+// this should sign them up, stop them if user already exists and hash their password
+exports.createUser = async(req, res) => { //alter this
     try{
-        const user = new User(req.body);
+        const { name, username, email, password } = req.body;
+
+        let user = await User.findOne({email});
+
+        if (user){
+            return res.status(400).send("This user already exists") //400 for client error
+        }
+        
+        const hashedPassword = await bycrypt.hash(password, 10);
+        user = new User({
+            name,
+            username,
+            email,
+            hashed_password: hashedPassword,
+        })
         await user.save();
         res.status(201).send(user);
     }
