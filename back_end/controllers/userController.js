@@ -7,7 +7,7 @@ exports.createUser = async(req, res) => { //alter this
     try{
         const { name, username, email, password } = req.body;
 
-        let user = await User.findOne({email});
+        let user = await User.findOne({email}); // maybe add a username check too
 
         if (user){
             return res.status(400).send("This user already exists") //400 for client error
@@ -28,6 +28,33 @@ exports.createUser = async(req, res) => { //alter this
 
     }
 };
+
+//create new controller for login/ jwt is issued here
+exports.loginUser = async(req, res) => {
+    try{
+        const { email, password } = req.body;
+
+        //check if user exists
+        const user = await User.findOne({})
+        if (!user){
+            return res.status(400).send({message : "Invalid credentials"});
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.hashed_password);
+        if (! passwordMatch){
+            return res.status(400).send({message: "Invalid credentials"});
+        }
+
+        //create jwt
+        const payload = { userId: user._id, role: user.role };
+        const token = jwt.sign(payload, 'your_jwt_secret', {expiresIn: '4h'}); //maybe lower expire time for test purposes
+
+        res.status(200).json({ token });
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+}
 
 
 exports.getUser = async (req, res) => {
