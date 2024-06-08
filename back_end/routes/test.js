@@ -1,3 +1,5 @@
+// this just serves as a file to test if an api is connecting correctly
+
 const express = require('express');
 const router = express.Router();
 

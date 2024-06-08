@@ -1,4 +1,5 @@
 //const http = require('http');
+require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -6,6 +7,7 @@ const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/users');
 const commentRoutes = require('./routes/comments');
 const testAPI = require('./routes/test.js');
+const authMiddleware = require('./middleware/authJWTmiddleWare')
 
 const app = express();
 // port I am connecting to 
@@ -23,9 +25,9 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 
 
 //Routes to categories
-app.use('/api/posts', postRoutes);
+app.use('/api/posts', authMiddleware, postRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/comments', commentRoutes);
+app.use('/api/comments', authMiddleware , commentRoutes);
 app.use('/api/test', testAPI); //simply for test purposes
 
 
