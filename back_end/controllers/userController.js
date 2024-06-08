@@ -13,7 +13,7 @@ exports.createUser = async(req, res) => { //alter this
             return res.status(400).send("This user already exists") //400 for client error
         }
         
-        const hashedPassword = await bycrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
         user = new User({
             name,
             username,
@@ -47,8 +47,8 @@ exports.loginUser = async(req, res) => {
 
         //create jwt
         const payload = { userId: user._id, role: user.role };
-        const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '4h'}); //maybe lower expire time for test purposes
-
+        const token = jwt.sign(payload, "test", {expiresIn: '4h'}); //maybe lower expire time for test purposes
+                                                                    // change this away from test later on to .env variable
         res.status(200).json({ token });
     }
     catch(err){
