@@ -41,8 +41,19 @@ exports.getPostById = async(req, res) => {
 
 exports.updatePost = async(req, res) => {
     try{
-        const post = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        const post = await Post.findById(req.params.id, req.body, {new: true});
         if (!post) return res.status(404).json({error: 'Post could not be found'});
+        res.status(200).json(post);
+
+        //check user is author or admin
+        if (req.user.id != post.author.toString() && !req.user.isAdmin){
+            return res.status(403).json({error: 'Not authorized'});
+        }
+
+        //update
+        Object.assign(post, req.body);
+        await post.save();
+
         res.status(200).json(post);
     }
     catch(err){
@@ -52,8 +63,16 @@ exports.updatePost = async(req, res) => {
 
 exports.deletePost = async(req, res) => {
     try{
-        const post = await Post.findByIdAndDelete(req.params.id);
+        const post = await Post.findById(req.params.id);
         if (!post) return res.status(404).json({error: 'Post could not be found'});
+
+        //check if owner or admin
+        if (req.user.id != post.author.toString() && !req.user.isAdmin){
+            return res.status(403).json({error: 'Not authorized'});
+        }
+
+        await post.remove();
+        
         res.status(200).json({ message: 'Post deleted' });
     }
     catch(err){
