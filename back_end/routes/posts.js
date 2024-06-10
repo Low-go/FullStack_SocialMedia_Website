@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
+const authMiddleware = require('../middleware/authJWTmiddleWare');
 
 //new post or C
-router.post('/', postController.createPost);
+router.post('/', authMiddleware, postController.createPost);
 
 //all posts or R all
 router.get('/', postController.getAllPosts);
@@ -12,9 +13,9 @@ router.get('/', postController.getAllPosts);
 router.get('/:id', postController.getPostById);
 
 //Update U
-router.put('/:id', postController.updatePost);
+router.put('/:id', authMiddleware, postController.updatePost);
 
 //Delete D
-router.delete('/:id', postController.deletePost);
+router.delete('/:id', authMiddleware, postController.deletePost);
 
 module.exports = router;

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // this should sign them up, stop them if user already exists and hash their password
 exports.createUser = async(req, res) => { //alter this
     try{
-        const { name, username, email, password } = req.body;
+        const { name, username, role , email, password} = req.body;
 
         let user = await User.findOne({email}); // maybe add a username check too
 
@@ -17,6 +17,7 @@ exports.createUser = async(req, res) => { //alter this
         user = new User({
             name,
             username,
+            role,
             email,
             hashed_password: hashedPassword,
         })
@@ -68,6 +69,7 @@ exports.getUser = async (req, res) => {
     catch(err){
         res.status(400).send(err);
     }
+
 };
 
 exports.getAllUsers = async(req, res) => {
@@ -106,4 +108,33 @@ exports.deleteUser = async(req, res) => {
         res.status(404).send(err);
     }
 }
+
+
+exports.updateAccount = async (req, res) => {
+    try {
+        const { oldPassword, newPassword } = req.body;
+        const userId = req.user.userId;
+
+        // Find the user by ID
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Verify the old password
+        const passwordMatch = await bcrypt.compare(oldPassword, user.hashed_password);
+        if (!passwordMatch) {
+            return res.status(400).json({ error: 'Old password is incorrect' });
+        }
+
+        // Update the user's password
+        user.hashed_password = newPassword;
+        await user.save();
+
+        res.status(200).json({ message: 'Password updated successfully' });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
 

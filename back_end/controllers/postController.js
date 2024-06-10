@@ -2,20 +2,18 @@ const Post = require('../models/Post');
 
 //the following are CRUD operations
 
-
 //create a post
 exports.createPost = async (req, res) => {
     try {
-        const { user_id, content, image} = req.body;
-        const newPost = new Post({ user_id, content, image});
+        const { author, content, image } = req.body; 
+        const newPost = new Post({ author, content, image }); 
         const post = await newPost.save();
         res.status(201).json(post);
     }
-    catch(err){
-        res.status(400).json({ error: err.message});
+    catch(err) {
+        res.status(400).json({ error: err.message });
     }
 }
-
 //read all
 
 exports.getAllPosts = async(req, res) => {
@@ -39,27 +37,27 @@ exports.getPostById = async(req, res) => {
     }
 }
 
-exports.updatePost = async(req, res) => {
-    try{
-        const post = await Post.findById(req.params.id, req.body, {new: true});
-        if (!post) return res.status(404).json({error: 'Post could not be found'});
-        res.status(200).json(post);
+exports.updatePost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) return res.status(404).json({ error: 'Post could not be found' });
 
-        //check user is author or admin
-        if (req.user.id != post.author.toString() && !req.user.isAdmin){
-            return res.status(403).json({error: 'Not authorized'});
+        // Check if the user is authorized
+        if (req.user.id !== post.author.toString() && !req.user.isAdmin) {
+            return res.status(403).json({ error: 'Not authorized' });
         }
 
-        //update
+        // Update the post
         Object.assign(post, req.body);
         await post.save();
 
         res.status(200).json(post);
     }
-    catch(err){
-        res.status(400).json({error: err.message});
+    catch (err) {
+        res.status(400).json({ error: err.message });
     }
 }
+
 
 exports.deletePost = async(req, res) => {
     try{

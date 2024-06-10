@@ -9,7 +9,7 @@ function authMiddleware(req, res, next){
 
     try{
         const decode = jwt.verify(token, "test"); // this must be changed later, this is just for test purposes
-        req.user = decoded;
+        req.user = decode;
         next()
     }
     catch(err){

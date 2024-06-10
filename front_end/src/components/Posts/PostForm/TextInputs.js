@@ -31,13 +31,9 @@ const TextInputs = ({ textInputs, onChange, handleCreatePost, loading }) => {
         <Button
           height="30px"
           padding="0px 30px"
-          disabled={!textInputs.title} // Using the variable for clarity
+          isDisabled={!textInputs.title} // Using the variable for clarity
           isLoading={loading}
           onClick={handleCreatePost}
-          _disabled={{ 
-            bg: 'gray.300',
-            cursor: 'not-allowed',
-          }}
         >
           Post
         </Button>

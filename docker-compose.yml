@@ -6,7 +6,7 @@ services:
       - "5000:5000"
     volumes:
       - ./back_end:/usr/src/app
-      - /usr/src/app/node_modules
+      
     depends_on:
       - mongo
   mongo:
