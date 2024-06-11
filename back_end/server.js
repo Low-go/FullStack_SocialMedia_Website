@@ -1,5 +1,5 @@
 //const http = require('http');
-//require('dotenv').config()
+//require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -27,7 +27,7 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 
 
 //Routes to categories
-app.use('/api/posts',  postRoutes); // jwt middleware applied in posts routes
+app.use('/api/posts',  postRoutes); //jwt middleware applied in posts routes
 app.use('/api/users', userRoutes);
 app.use('/api/comments', authMiddleware , commentRoutes);
 app.use('/api/test', testAPI); //simply for test purposes
