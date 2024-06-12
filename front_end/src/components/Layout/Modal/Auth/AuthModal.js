@@ -1,14 +1,34 @@
 import { useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Box } from '@chakra-ui/react';
-import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import {React, useEffect} from 'react';
+import { useRecoilState,useSetRecoilState, useRecoilValue } from 'recoil';
 import { AuthModalState } from '../../../../atoms/authModalAtom.js';
 import AuthInputs from './AuthInputs.js';
 import { Flex } from '@chakra-ui/react';
 import { authState } from '../../../../atoms/authAtom.js';
 
+
 const AuthModal = () => {
     const [modalState, setModalState] = useRecoilState(AuthModalState);
     const { isAuthenticated } = useRecoilValue(authState);
+    const setAuthState = useSetRecoilState(authState);
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // If there's a token in localStorage, the user is authenticated
+      setAuthState(prev => ({
+        ...prev,
+        isAuthenticated: true,
+      }));
+      // Keep the modal closed
+      setModalState(prev => ({
+        ...prev,
+        open: false,
+      }));
+    }
+  }, []);
+
 
     const handleClose = () => {
       if (isAuthenticated){

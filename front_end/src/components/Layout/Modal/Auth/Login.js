@@ -3,34 +3,70 @@ import { Flex, Button, Input, Text } from "@chakra-ui/react";
 import { useState } from 'react';
 import { AuthModalState } from '../../../../atoms/authModalAtom.js';
 import { useSetRecoilState } from 'recoil';
+import { authState } from '../../../../atoms/authAtom.js';
+
 
 
 const Login = () => {
 
   const setAuthModalState = useSetRecoilState(AuthModalState);  
+  const setAuthState = useSetRecoilState(authState);
+
 
   const [loginForm, setLoginForm] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
   //on submit should connect to my mongodb!!
-  const onSubmit = () => {};
+  const onSubmit = async (event) => {
+    event.preventDefault();
+  
+    const { username, password } = loginForm;
+  
+    const response = await fetch('http://localhost:5000/api/users/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+  
+    if (response.ok) {
+        const data = await response.json();
+        // Store the JWT token in localStorage
+        localStorage.setItem('token', data.token);
+        // Update your authState to reflect the new authentication status
+        setAuthState({
+          isAuthenticated: true,
+          user: username,
+        });
+        // Update your AuthModalState to close the modal
+        setAuthModalState(prev => ({
+          ...prev,
+          open: false,
+        }));
+        alert("Login successful");
+        console.log("login successfyl");
+    }
+  };
+  
   const onChange = (event) => {
     //update form state
-    setLoginForm => (prev => ({
-        ...prev,
-        [event.target.name]: event.target.value,
-    }))
+    setLoginForm(prev => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
+  
 
   return (    
     <form onSubmit={onSubmit}>
         <Input 
             required
-            name="email" 
-            placeHolder="email" 
-            type="email"
+            name="username" 
+            placeholder="User Name" 
+            type="text"
             mb={2}
             onChange={onChange}
             fontSize='10pt'
@@ -51,7 +87,7 @@ const Login = () => {
         <Input 
             required
             name="password"
-            placeHolder="password"
+            placeholder="password"
             type="password"
             mb={2}
             onChange={onChange}
@@ -78,7 +114,7 @@ const Login = () => {
             <Text color="blue.500"
                 fontWeight={700} 
                 cursor="pointer"
-                onClick={() => // Added "=" here
+                onClick={() => 
                     setAuthModalState((prev) => ({
                         ...prev,
                         view: "signup",
