@@ -1,5 +1,6 @@
 import { Flex, Stack, Text } from '@chakra-ui/react'
-import React from 'react'
+import moment from 'moment';
+import React from 'react';
 
 const PostItem = ({ post }) => {
   return (
@@ -9,7 +10,9 @@ const PostItem = ({ post }) => {
       borderRadius={4} 
       _hover={{ borderColor: "gray.500"}} 
       cursor= 'pointer' 
-      onClick={() => console.log('Post selected')}>
+      onClick={() => console.log('Post selected')}
+      minHeight="90px"
+      >
 
       <Flex direction='column'
         align='center'
@@ -25,8 +28,9 @@ const PostItem = ({ post }) => {
             align="center" 
             fontSize="9pt"
             >
-              <Text>Posted by {post.author}</Text>
-              <Text>{post.content}</Text>
+              <Text>Posted by ____   {post.created_at ? moment(post.created_at).fromNow() : ''}</Text>
+
+              
           </Stack>
         </Stack>
       </Flex>

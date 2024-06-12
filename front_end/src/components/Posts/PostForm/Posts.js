@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PostItem from './PostItem';
+import { Stack } from '@chakra-ui/react';
 
 const Posts = () => {
     const [loading, setLoading] = useState(false);
@@ -24,9 +25,9 @@ const Posts = () => {
     }, []);
 
     return (
-        <>
+        <Stack>
             {Array.isArray(posts) && posts.map(post => <PostItem key={post._id} post={post} />)}
-        </>
+        </Stack>
     )
 }
 
