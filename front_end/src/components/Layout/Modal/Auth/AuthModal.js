@@ -1,18 +1,22 @@
 import { useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Box } from '@chakra-ui/react';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { AuthModalState } from '../../../../atoms/authModalAtom.js';
 import AuthInputs from './AuthInputs.js';
 import { Flex } from '@chakra-ui/react';
+import { authState } from '../../../../atoms/authAtom.js';
 
 const AuthModal = () => {
     const [modalState, setModalState] = useRecoilState(AuthModalState);
+    const { isAuthenticated } = useRecoilValue(authState);
 
     const handleClose = () => {
+      if (isAuthenticated){
         setModalState(prev => ({
            ...prev,
            open: false, 
         }));
+      }
     };
 
     return (

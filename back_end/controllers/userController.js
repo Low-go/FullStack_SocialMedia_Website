@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // this should sign them up, stop them if user already exists and hash their password
 exports.createUser = async(req, res) => { //alter this
     try{
-        const { name, username, role , email, password} = req.body;
+        const { username, role , email, password} = req.body;
 
         let user = await User.findOne({email}); // maybe add a username check too
 
@@ -15,7 +15,7 @@ exports.createUser = async(req, res) => { //alter this
         
         const hashedPassword = await bcrypt.hash(password, 10);
         user = new User({
-            name,
+            
             username,
             role,
             email,
@@ -33,10 +33,10 @@ exports.createUser = async(req, res) => { //alter this
 //create new controller for login/ jwt is issued here
 exports.loginUser = async(req, res) => {
     try{
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
         //check if user exists
-        const user = await User.findOne({ email })
+        const user = await User.findOne({ username })
         if (!user){
             return res.status(400).send({message : "Invalid credentials"});
         }
