@@ -19,7 +19,7 @@ const NewPostForm = () => {
   const [selectedTab, setSelectedTab] = useState(formTabs[0].title);
 
   const [textInputs, setTextInputs] = useState({
-    title: '',
+    
     body: '',
   });
 

@@ -7,6 +7,7 @@ const RightContent = () => {
   return (
     <>
     <AuthModal/>
+    
     <Flex justify="center" align="center">
         <AuthButtons /> 
     </Flex>

@@ -2,8 +2,8 @@ import { atom } from "recoil";
 
 // Define the default state without using TypeScript interfaces
 const defaultModalState = {
-    open: false,
-    view: "login"
+    open: true,
+    view: "signup"
 }
 
 // Create the atom without type annotations

@@ -28,10 +28,9 @@ const PostItem = ({ post }) => {
             align="center" 
             fontSize="9pt"
             >
-              <Text>Posted by ____   {post.created_at ? moment(post.created_at).fromNow() : ''}</Text>
-
-              
+              <Text>Posted by ____   {post.created_at ? moment(post.created_at).fromNow() : ''}</Text>         
           </Stack>
+          <Text>{post.content}</Text>
         </Stack>
       </Flex>
 
