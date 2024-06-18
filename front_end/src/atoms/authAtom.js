@@ -9,5 +9,6 @@ export const authState = atom({
     default: {
         isAuthenticated: false,
         user: null,
+        userId: null,
     }
 })

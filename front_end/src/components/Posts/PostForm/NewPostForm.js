@@ -3,6 +3,10 @@ import { Flex } from '@chakra-ui/react';
 import { IoDocumentText, IoImageOutline } from 'react-icons/io5';
 import TabItem from './TabItem';
 import TextInputs from './TextInputs';
+import axios from 'axios';
+import { useRecoilValue } from 'recoil';
+import { authState } from '../../../atoms/authAtom';
+
 
 const formTabs = [
   {
@@ -16,6 +20,7 @@ const formTabs = [
 ];
 
 const NewPostForm = () => {
+  const { user, userId } = useRecoilValue(authState);
   const [selectedTab, setSelectedTab] = useState(formTabs[0].title);
 
   const [textInputs, setTextInputs] = useState({
@@ -26,9 +31,47 @@ const NewPostForm = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [loading, setLoading] = useState(false);
 
-  const handleCreatePost = async () => {};
+  const handleCreatePost = async () => {
+    setLoading(true);
+    try{
+      const token = localStorage.getItem('token');
+      if(!token){
+        console.error("No token found");
+        return;
+      }
+      
 
-  const onSelectImage = () => {};
+      const data = {
+        author: userId,
+        content: textInputs.body,
+      };
+  
+
+      const response = await axios.post('http://localhost:5000/api/posts', data, {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': token, 
+        },
+      });
+
+      if (response.status === 201){
+        const post = response.data;
+        console.log('Post Created', post);
+      }
+      else{
+        console.error('Failed to create post', err.response.data);
+      }
+
+    }
+    catch(err){
+      console.error('Failed to create post');
+    }
+    finally{
+      setLoading(false);
+    }
+  };
+
+  const onSelectImage = () => {}; // not yet implementing
 
   const onTextChange = (event) => {
     const { name, value } = event.target;

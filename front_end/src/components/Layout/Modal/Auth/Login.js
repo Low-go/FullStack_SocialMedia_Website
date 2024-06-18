@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { AuthModalState } from '../../../../atoms/authModalAtom.js';
 import { useSetRecoilState } from 'recoil';
 import { authState } from '../../../../atoms/authAtom.js';
-
+import { jwtDecode } from 'jwt-decode';
 
 
 const Login = () => {
@@ -36,12 +36,19 @@ const Login = () => {
         const data = await response.json();
         // Store the JWT token in localStorage
         localStorage.setItem('token', data.token);
+
+        const decodedToken = jwtDecode(data.token);
+        const userId = decodedToken.userId;
+
         // Update your authState to reflect the new authentication status
         setAuthState({
           isAuthenticated: true,
           user: username,
+          userId: userId,
         });
-        // Update your AuthModalState to close the modal
+        console.log(username);
+        console.log(userId);
+        // Update you AuthModalState to close the modal
         setAuthModalState(prev => ({
           ...prev,
           open: false,

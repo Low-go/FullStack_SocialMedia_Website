@@ -5,6 +5,7 @@ const Post = require('../models/Post');
 //create a post
 exports.createPost = async (req, res) => {
     try {
+        console.log(req.body); 
         const { author, content, image } = req.body; 
         const newPost = new Post({ author, content, image }); 
         const post = await newPost.save();
@@ -16,26 +17,25 @@ exports.createPost = async (req, res) => {
 }
 //read all
 
-exports.getAllPosts = async(req, res) => {
-    try{
-        const posts = await Post.find().sort({ created_at: -1});
-        res.status(200).json({posts});
+exports.getAllPosts = async (req, res) => {
+    try {
+      const posts = await Post.find().sort({ created_at: -1 }).populate('author', 'username');
+      res.status(200).json({ posts });
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
-    catch(err){
-        res.status(400).json({error: err.message});
-    }
-}
+};
 
-exports.getPostById = async(req, res) => {
-    try{
-        const post = await Post.findById(req.params.id);
-        if (!post) return res.status(404).json({error: 'Post could not be found'});
-        res.status(200).json(post);
+
+exports.getPostById = async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id).populate('author', 'username');
+      if (!post) return res.status(404).json({ error: 'Post could not be found' });
+      res.status(200).json(post);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
-    catch(err){
-        res.status(400).json({error: err.message});
-    }
-}
+};
 
 exports.updatePost = async (req, res) => {
     try {
