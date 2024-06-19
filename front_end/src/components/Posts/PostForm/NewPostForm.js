@@ -30,6 +30,7 @@ const NewPostForm = () => {
 
   const [selectedFile, setSelectedFile] = useState();
   const [loading, setLoading] = useState(false);
+  
 
   const handleCreatePost = async () => {
     setLoading(true);
