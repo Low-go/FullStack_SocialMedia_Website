@@ -17,6 +17,7 @@ const AuthButtons = () => {
       ...prev,
       isAuthenticated: false,
     }));
+    setAuthModalState({ open: true, view: 'login' })
     alert('You have signed out.');
   };
 

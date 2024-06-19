@@ -6,13 +6,12 @@ import AuthButtons from './AuthButtons';
 const RightContent = () => {
   return (
     <>
-    <AuthModal/>
-    
-    <Flex justify="center" align="center">
+      <AuthModal />
+      <Flex justify="center" align="center">
         <AuthButtons /> 
-    </Flex>
+      </Flex>
     </>
-  )
+  );
 }
 
-export default RightContent
+export default RightContent;

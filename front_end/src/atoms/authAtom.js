@@ -12,3 +12,11 @@ export const authState = atom({
         userId: null,
     }
 })
+
+export const AuthModalState = atom({
+    key: 'AuthModalState',
+    default: {
+        open: false,
+        view: 'login',
+    },
+});
