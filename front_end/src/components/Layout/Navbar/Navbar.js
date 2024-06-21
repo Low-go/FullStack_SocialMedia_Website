@@ -9,7 +9,7 @@ const Navbar = () => {
     <Flex bg="#00887a" height='60px' padding="6px 12px" align="center">
       <Flex align="center">
         <Link href="/"> {/* Wrap the Image component with Link */}
-          <a> {/* Add an anchor tag */}
+         
             <Image 
               src="/images/PostMeLogo2.png" 
               height="40px"   
@@ -17,7 +17,7 @@ const Navbar = () => {
               marginRight="12px"
               borderRadius={2} 
             />
-          </a>
+ 
         </Link>
       </Flex>
       <Flex
