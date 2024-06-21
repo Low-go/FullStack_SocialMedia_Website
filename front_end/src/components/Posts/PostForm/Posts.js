@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PostItem from './PostItem';
-import { Stack } from '@chakra-ui/react';
+import { Stack, Spinner } from '@chakra-ui/react';
 
 const Posts = () => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true); // Assume loading initially
     const [posts, setPosts] = useState([]);
 
     const getPosts = async () => {
-        setLoading(true);
         try {
             const response = await axios.get('http://localhost:5000/api/posts?sort=-created_at');
-            console.log('Retrieved Posts:', response.data);
             setPosts(response.data.posts); // Ensure that you're setting an array
         } catch (error) {
-            console.log('getPosts error', error.message);
+            console.error('getPosts error', error.message);
         } finally {
             setLoading(false);
         }
@@ -23,6 +21,10 @@ const Posts = () => {
     useEffect(() => {
         getPosts();
     }, []);
+
+    if (loading) {
+        return <Spinner />;
+    }
 
     return (
         <Stack>
