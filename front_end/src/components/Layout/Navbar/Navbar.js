@@ -2,23 +2,23 @@ import { Flex, Image } from '@chakra-ui/react';
 import React from 'react';
 import SearchInput from './SearchInput';
 import RightContent from './RightContent/RightContent';
+import Link from 'next/link'; // Import the Link component
 
 const Navbar = () => {
   return (
-    <Flex bg="white" height='60px' padding="6px 12px" align="center">
+    <Flex bg="#00887a" height='60px' padding="6px 12px" align="center">
       <Flex align="center">
-        <Image 
-          src="/images/PostMeLogo2.png" 
-          height="40px"   
-          width="auto"    
-          marginRight="12px"
-          borderRadius={2} 
-        />
-        <Image 
-          src="/images/PostMe.png" 
-          height="33px" 
-          display={{ base: 'none', md: 'unset' }} 
-        />
+        <Link href="/"> {/* Wrap the Image component with Link */}
+          <a> {/* Add an anchor tag */}
+            <Image 
+              src="/images/PostMeLogo2.png" 
+              height="40px"   
+              width="auto"    
+              marginRight="12px"
+              borderRadius={2} 
+            />
+          </a>
+        </Link>
       </Flex>
       <Flex
         flex="1" /* This ensures the SearchInput takes available space */
@@ -27,8 +27,7 @@ const Navbar = () => {
         <SearchInput />
         <RightContent />
       </Flex>
-      {/* <Directory />
-           */}
+      {/* <Directory /> */}
     </Flex>
   );
 };
