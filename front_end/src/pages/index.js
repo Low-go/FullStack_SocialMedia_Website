@@ -1,23 +1,24 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import PageContent from "@/components/Layout/Layout/PageContent";
+import PageContent from "@/components/Layout/MainContent/PageContent";
 import CreatePostLink from "@/components/Layout/MainContent/CreatePostLink";
 import Posts from "@/components/Posts/PostForm/Posts";
 import UserBioScreen from "@/components/Layout/MainContent/UserBioScreen";
 
-const inter = Inter({ subsets: ["latin"] });
-
-function Home() {
+const Home = () => {
   return (
-    <PageContent>
-      <>
-        <CreatePostLink/>
-        <Posts/>
-      </>
-      < UserBioScreen/>
-    </PageContent>
+    <>
+      <Head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+      </Head>
+      <PageContent>
+        <>
+          <CreatePostLink />
+          <Posts />
+        </>
+        <UserBioScreen />
+      </PageContent>
+    </>
   );
-}
+};
 
 export default Home;
