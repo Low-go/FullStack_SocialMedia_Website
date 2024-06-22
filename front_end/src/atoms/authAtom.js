@@ -10,6 +10,8 @@ export const authState = atom({
         isAuthenticated: false,
         user: null,
         userId: null,
+        role: null,
+        created_at: null,
     }
 })
 

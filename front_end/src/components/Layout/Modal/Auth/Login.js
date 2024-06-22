@@ -39,15 +39,21 @@ const Login = () => {
 
         const decodedToken = jwtDecode(data.token);
         const userId = decodedToken.userId;
+        const role = decodedToken.role;
+        const created_at = decodedToken.createdAt;
 
         // Update your authState to reflect the new authentication status
         setAuthState({
           isAuthenticated: true,
           user: username,
           userId: userId,
+          role: role,
+          created_at: created_at,
         });
         console.log(username);
         console.log(userId);
+        console.log(created_at);
+        console.log(role);
         // Update you AuthModalState to close the modal
         setAuthModalState(prev => ({
           ...prev,

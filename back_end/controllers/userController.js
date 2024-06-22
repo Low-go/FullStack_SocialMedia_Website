@@ -47,7 +47,7 @@ exports.loginUser = async(req, res) => {
         }
 
         //create jwt
-        const payload = { userId: user._id, role: user.role };
+        const payload = { userId: user._id, role: user.role, createdAt: user.created_at };
         const token = jwt.sign(payload, "test", {expiresIn: '4h'}); //maybe lower expire time for test purposes
                                                                     // change this away from test later on to .env variable
         res.status(200).json({ token });
