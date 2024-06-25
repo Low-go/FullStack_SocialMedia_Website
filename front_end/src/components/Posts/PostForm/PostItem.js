@@ -7,7 +7,7 @@ const PostItem = ({ post }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push('/postDetails');
+    router.push(`/postDetails/${post._id}`);
     console.log("post selected");
   };
 
