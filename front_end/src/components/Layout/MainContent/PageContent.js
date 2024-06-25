@@ -1,13 +1,13 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
-import LeftContent from '../../../components/Layout/MainContent/LeftContent'; // Adjust the import path as needed
+import LeftContent from './leftContent'; 
 
 const PageContent = ({ children }) => {
   return (
     <Flex justify='center' padding='16px 8px'>
       <Flex width='95%' maxWidth='1100px' justify='center'>
         {/* LHS - Weather Widget */}
-        <Flex direction='column' width={{ base: '100%', md: '20%' }} mr={{ base: 0, md: 4 }}>
+        <Flex direction='column' width={{ base: '100%', md: '25%' }} mr={{ base: 0, md: 4 }}>
           <LeftContent />
         </Flex>
         

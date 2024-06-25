@@ -1,8 +1,16 @@
+import React from 'react';
 import { Flex, Box, Text, Stack } from '@chakra-ui/react';
 import moment from 'moment';
-import React from 'react';
+import { useRouter } from 'next/router';
 
 const PostItem = ({ post }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/postDetails');
+    console.log("post selected");
+  };
+
   return (
     <Flex
       borderWidth='2px'
@@ -13,7 +21,7 @@ const PostItem = ({ post }) => {
       boxShadow='md'
       _hover={{ boxShadow: "lg", borderColor: "#00887a", borderWidth:'3px' }}
       cursor='pointer'
-      onClick={() => console.log('Post selected')}
+      onClick={handleClick}
       minHeight="200px"
       width={{ base: "100%", sm: "100%", md: "100%", lg: "100%", xl: "100%" }}
       direction="column"
