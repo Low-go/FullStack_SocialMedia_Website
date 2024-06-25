@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { Flex, Box, Text, Stack } from '@chakra-ui/react';
+import { Flex, Box, Text, Stack, VStack, Spacer } from '@chakra-ui/react';
 
 const PostDetails = () => {
   const [post, setPost] = useState(null);
@@ -31,10 +31,10 @@ const PostDetails = () => {
     <Flex
       direction="column"
       align="center"
-      justify="flex-start" // Align to the top of the viewport
+      justify="flex-start"
       minHeight="100vh"
       width="100%"
-      pt={{ base: "4", md: "8" }} // Adjust top padding to raise the box
+      pt={{ base: "4", md: "8" }}
     >
       <Box
         borderWidth="2px"
@@ -45,22 +45,30 @@ const PostDetails = () => {
         _hover={{ boxShadow: "lg", borderColor: "#00887a", borderWidth: "3px" }}
         cursor="pointer"
         minHeight="200px"
-        width={{ base: "100%", sm: "100%", md: "100%", lg: "100%", xl: "75%" }}
+        width={{ base: "95%", sm: "90%", md: "90%", lg: "75%", xl: "55%" }}
         p={4}
         fontFamily="'Arial', sans-serif"
+        position="relative" // Add position relative to the Box
       >
-        <Stack spacing={4} height="100%">
+        <VStack spacing={4} 
+          height="100%"
+          align="start"
+          paddingLeft={2}
+          >
           <Text fontSize="14pt" fontWeight="bold">
             {post.content}
           </Text>
+          <Spacer /> {/* This will push the content above to the top and content below to the bottom */}
           <Text
             fontSize="10pt"
             color="gray.700"
-            mt="auto" // Automatically margin at the top to push to the bottom
+            position="absolute" // Position the Text absolutely
+            bottom="4" // Distance from the bottom of the Box
+            width="100%" // Ensure the Text spans the width of the Box
           >
             Posted by {post.author.username} at {new Date(post.created_at).toLocaleString()}
           </Text>
-        </Stack>
+        </VStack>
       </Box>
     </Flex>
   );
