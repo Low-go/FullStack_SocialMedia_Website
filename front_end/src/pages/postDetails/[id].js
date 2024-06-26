@@ -27,9 +27,13 @@ const PostDetails = () => {
     }
   }, [id]);
 
-  const isAuthorized = () =>{
-    //return auth.user && (auth.user._id === post.author._id || auth.role === 'admin');
-    return true;
+  const isAuthorized = () => {
+    console.log('auth:', auth);
+    console.log('post:', post);
+    if (auth.user && post) {
+      return auth.userId === post.author._id || auth.role === 'admin';
+    }
+    return false;
   };
 
   const handleUpdate = () => {

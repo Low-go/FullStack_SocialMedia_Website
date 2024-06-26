@@ -2,9 +2,11 @@ import React from 'react';
 import { Flex, Box, Text, Stack } from '@chakra-ui/react';
 import moment from 'moment';
 import { useRouter } from 'next/router';
+import { authState } from '../../../atoms/authAtom';
 
 const PostItem = ({ post }) => {
   const router = useRouter();
+  
 
   const handleClick = () => {
     router.push(`/postDetails/${post._id}`);
