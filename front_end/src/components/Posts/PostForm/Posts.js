@@ -9,8 +9,8 @@ const Posts = () => {
 
     const getPosts = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/posts?sort=-created_at');
-            setPosts(response.data.posts); // Ensure that you're setting an array
+            const response = await axios.get('http://localhost:5000/api/posts?sort=-created_at'); //get all posts
+            setPosts(response.data.posts); 
         } catch (error) {
             console.error('getPosts error', error.message);
         } finally {
@@ -26,9 +26,9 @@ const Posts = () => {
         return <Spinner />;
     }
 
-    return (
+    return ( //loop through and create postItems
         <Stack>
-            {Array.isArray(posts) && posts.map(post => <PostItem key={post._id} post={post} />)}
+            {Array.isArray(posts) && posts.map(post => <PostItem key={post._id} post={post} />)} 
         </Stack>
     )
 }
